@@ -10,23 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_10_063331) do
-
-  create_table "bartenders", force: :cascade do |t|
-    t.string "name"
-    t.string "handle"
-    t.integer "restaurant_id"
-  end
-
-  create_table "cocktails", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.integer "bartender_id"
-  end
-
-  create_table "restaurants", force: :cascade do |t|
-    t.string "name"
-    t.string "city"
-  end
+ActiveRecord::Schema.define(version: 0) do
 
 end
