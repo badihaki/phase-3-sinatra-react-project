@@ -33,6 +33,11 @@ class ApplicationController < Sinatra::Base
     bartender.to_json
   end
 
+  post '/bartenders' do
+    new_bartender = Bartender.create(name:params[:name], handle:params[:handle])
+    new_bartender.to_json
+  end
+
   # A bartender needs cocktails, so lets put those routes here
   get "/cocktails" do
     all_cocktails = Cocktail.all.order(:bartender_id)
