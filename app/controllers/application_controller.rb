@@ -3,7 +3,12 @@ class ApplicationController < Sinatra::Base
   
   # Add your routes here
   get "/" do
-    { message: "Good luck with your project!" }.to_json
+    { message: "
+      Use '/restaurants'
+      or '/bartenders'
+      or '/cocktails'
+      to explore data
+      " }.to_json
   end
   
   # Lets do Restaurant routes here
@@ -26,6 +31,17 @@ class ApplicationController < Sinatra::Base
   get "/bartenders/:id" do
     bartender = Bartender.find(params[:id])
     bartender.to_json
+  end
+
+  # A bartender needs cocktails, so lets put those routes here
+  get "/cocktails" do
+    all_cocktails = Cocktail.all.order(:bartender_id)
+    all_cocktails.to_json
+  end
+
+  get "/cocktails/:id" do
+    cocktail = Cocktail.find(params[:id])
+    cocktail.to_json
   end
 
 end
