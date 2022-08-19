@@ -22,6 +22,11 @@ class ApplicationController < Sinatra::Base
     restaurant.to_json
   end
 
+  post '/restaurants' do
+    restaurant = Restaurant.create(name: params[:name], city: params[:city])
+    restaurant.to_json
+  end
+
   # Lets rock out bartender route here
   get "/bartenders" do
     all_bartenders = Bartender.all
@@ -34,8 +39,24 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/bartenders' do
-    new_bartender = Bartender.create(name:params[:name], handle:params[:handle])
+    new_bartender = Bartender.create(name:params[:name], handle:params[:handle], restaurant_id:params[:restaurant_id])
     new_bartender.to_json
+  end
+
+  patch '/bartenders/:id' do
+    bartender = Bartender.find(params[:id])
+    bartender.update(
+      name: params[:name],
+      handle: params[:handle],
+      restaurant_id: params[:restaurant_id]
+    )
+    bartender.to_json
+  end
+
+  delete '/bartenders/:id' do
+    bartender = Bartender.find(params[:id])
+    bartender.destroy
+    bartender.to_json
   end
 
   # A bartender needs cocktails, so lets put those routes here
@@ -46,6 +67,26 @@ class ApplicationController < Sinatra::Base
 
   get "/cocktails/:id" do
     cocktail = Cocktail.find(params[:id])
+    cocktail.to_json
+  end
+
+  post '/cocktails' do
+    new_cocktail = Cocktail.create(name:params[:name], description:params[:description], bartender_id:params[:bartender_id])
+    new_cocktail.to_json
+  end
+
+  patch '/cocktails/:id' do
+    cocktail = Cocktail.find(params[:id])
+    cocktail.update(
+      name: params[:name],
+      description: params[:description],
+      bartender_id: params[:bartender_id]
+    )
+  end
+
+  delete '/cocktails/:id' do
+    cocktail = Cocktail.find(params[:id])
+    cocktail.destroy
     cocktail.to_json
   end
 
