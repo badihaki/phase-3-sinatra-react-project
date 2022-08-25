@@ -122,3 +122,6 @@ fetch("http://localhost:9292/test")
 [dbdiagram.io]: https://dbdiagram.io/
 [postman download]: https://www.postman.com/downloads/
 [network tab]: https://developer.chrome.com/docs/devtools/network/
+
+Haki's Frontend Repo: https://github.com/badihaki/phase-3-project
+Haki's back-end repo: https://github.com/badihaki/phase-3-sinatra-react-project
